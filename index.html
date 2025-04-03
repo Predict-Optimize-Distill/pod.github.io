@@ -126,7 +126,7 @@
         <!-- TODO: Update arxiv/code/data link -->
         <div class="base-row add-top-padding">
             <!-- Paper -->
-            <a href="https://arxiv.org/abs/2409.18121" target="_blank" class="link-block">
+            <a href=" todo " target="_blank" class="link-block">
                 <figure>
                     <img src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/5cab99df4998decfbf9e218e_paper-01.png"
                         alt="paper"
@@ -165,7 +165,7 @@
                 POD uses a self-improving cycle for 4D object understanding from an object scan and single monocular video.
             </h1>
             <video id="main-video" autobuffer muted autoplay loop controls playsinline>
-                <source id="mp4" src="http://pod.github.io/data/teaser_video.mp4" type="video/mp4">
+                <source id="mp4" src="data/teaser_video.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -184,41 +184,145 @@
             <p class="paragraph">
                 POD takes in <b>1) </b>a multi-view object scan and <b>2)</b> a monocular demonstration video.
                 By creating part-aware 3D representations using <a href="https://www.garfield.studio/" class="author-text" target="_blank">GARField</a> (parts, toggle for clusters) and 
-                <a href="https://github.com/facebookresearch/dinov2" class="author-text"target="_blank">DINOv2</a> (tracking SE3 pose), POD achieves 4D object part tracking.
+                <a href="https://github.com/facebookresearch/dinov2" class="author-text"target="_blank">DINOv2</a> (tracking SE3 pose), POD achieves 4D object part tracking. We compare POD with an optimization only method <a href="https://robot-see-robot-do.github.io/" class="author-text"target="_blank">RSRD</a>.
             </p>
-            
             
 
             <div id="main-results">
-                <h1 class="tldr"><b>Input demonstration video</b></h1>
-                <div class="video-carousel-wrapper">
-                    <div class="carousel-container" id="videoCarousel">
-                        <!-- Add your video elements here -->
-                        <div class="carousel-item" id="toy">
-                            <video autoplay muted loop playsinline height="400px">
-                                <source src="http://pod.github.io/data/demo_vids/toy.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        
+                <h1 class="tldr"><b>Object Tracking Results</b></h1>
+            <div class="video-carousel-wrapper">
+                <div class="carousel-container" id="videoCarousel">
+                    <!-- Add your video elements here -->
+                    <div class="carousel-item" id="toy_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/toy.mp4" type="video/mp4">
+                        </video>
                     </div>
+
+                    <div class="carousel-item" id="barb_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/barb.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="carrot_knife_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/carrot_knife.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="drawer_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/drawer.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="jumping_lamp_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/jumping_lamp.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="knife_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/knife.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="lamp_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/lamp.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="redbox_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/redbox.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="carousel-item" id="scissors_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/scissors.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="stapler_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/stapler.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="switch_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/switch.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="carousel-item" id="vacuum_video">
+                        <video autoplay muted loop playsinline height="800px">
+                            <source src="data/demo_vids/vacuum.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
                 </div>
             </div>
+
+            <div style="position: relative; display: flex;">
+                <button class="results-slide-arrow" id="results-slide-arrow-prev" onclick="results_slide_left()">
+                    &#8249;
+                </button>
+                <div class="results-slide-row" id="results-objs-scroll">
+                    <div data-img-src="data/thumbnails/toy.png" data-id="toy-thumb" data-label="Tractor"></div>
+                    <div data-img-src="data/thumbnails/barb.png" data-id="barb-thumb" data-label="Barbarian"></div>
+                    <div data-img-src="data/thumbnails/redbox.png" data-id="redbox-thumb" data-label="Box"></div>
+                    <div data-img-src="data/thumbnails/scissors.png" data-id="scissors-thumb" data-label="Scissors"></div>
+                    <div data-img-src="data/thumbnails/carrot_knife.png" data-id="carrot_knife-thumb" data-label="Carrot Knife"></div>
+                    <div data-img-src="data/thumbnails/drawer.png" data-id="drawer-thumb" data-label="Drawer"></div>
+                    <div data-img-src="data/thumbnails/stapler.png" data-id="stapler-thumb" data-label="Stapler"></div>
+                    <div data-img-src="data/thumbnails/switch.png" data-id="switch-thumb" data-label="Nintendo Switch"></div>
+                    <div data-img-src="data/thumbnails/vacuum.png" data-id="vacuum" data-label="Vacuum"></div>
+                </div>
+                <button class="results-slide-arrow" id="results-slide-arrow-next" onclick="results_slide_right()">
+                    &#8250;
+                </button>
+            </div>
+
+                
+            </div> 
         
         </div>
 
 
-
+        <div class="section base-row add-top-padding">
+            <h1>How it works</h1>
+            <div class="separator"></div>
+            <p class="tldr"><b>Self-improving cycle</b></p>
+            <p class="paragraph">
+                POD utilizes a cycle consisting of a <b>predictive</b> feed-forward
+                model, an <b>optimization</b> stage, and a self-<b>distillation</b> phase to iteratively improve the object part pose predictions.
+            </p>
+            <img src="data/pipeline.jpg" style="max-width: 100%; padding-bottom: 30px" />
+            <p class="paragraph">
+                POD builds a 3D object model from a multi-view scan of the object using <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" class="author-text" target="_blank">3D Gaussian Splatting</a> and <a href="https://www.garfield.studio/" class="author-text" target="_blank">GARField</a>. In the <b>prediction</b> stage, POD estimates the object's part poses from a monocular video with a feed-forward model conditioned on RGB images. Using these predictions it <b>optimizes</b> poses against the monocular video observations, utilizing quasi-multiview supervision by finding matching frames with similar predicted poses and jointly optimizing them. POD then <b>distills</b> the optimized poses back into the predictive model by generating synthetic data from novel views by applying part poses to the object 3D model and rendering RGB observations from different camera poses. 
+            </p>
+            <img src="data/publication_pcp_metrics (1).jpg" style="max-width: 90%" />
+            <p class="paragraph">
+                POD's performance increases with the frame number and the loop number.
+            </p>
+         </div>
 
         <div class="section citation" style="margin-top: 50px">
             <h1 id="abstract">Citation </h1>
             <p class="paragraph"> If you use this work or find it helpful, please consider citing: (bibtex) </p>
-            <pre id="codecell0">@inproceedings{kerr2024rsrd,
-&nbsp;title={Robot See Robot Do: Imitating Articulated Object Manipulation with Monocular 4D Reconstruction},
-&nbsp;author={Justin Kerr and Chung Min Kim and Mingxuan Wu and Brent Yi and Qianqian Wang and Ken Goldberg and Angjoo Kanazawa},
-&nbsp;booktitle={8th Annual Conference on Robot Learning},
-&nbsp;year={2024},
-&nbsp;url={https://openreview.net/forum?id=2LLu3gavF1}
-}
+            <pre id="codecell0">
+                <!-- @inproceedings{kerr2024rsrd,
+                    &nbsp;title={Robot See Robot Do: Imitating Articulated Object Manipulation with Monocular 4D Reconstruction},
+                    &nbsp;author={Justin Kerr and Chung Min Kim and Mingxuan Wu and Brent Yi and Qianqian Wang and Ken Goldberg and Angjoo Kanazawa},
+                    &nbsp;booktitle={8th Annual Conference on Robot Learning},
+                    &nbsp;year={2024},
+                    &nbsp;url={https://openreview.net/forum?id=2LLu3gavF1}
+                    } -->
 </pre>
         </div>
         <footer>

@@ -12,6 +12,11 @@ $(() => {
         class: "thumbnails",
         alt: "paper",
         src: $child.data("img-src"),
+        style: {
+          maxWidth: "100%",  // Ensures image does not exceed container width
+          height: "auto",    // Maintains aspect ratio
+          objectFit: "contain" // Prevents distortion while fitting within its container
+        },
       });
       $input.append($img);
       const $label = $("<label>", {
@@ -24,8 +29,8 @@ $(() => {
   });
 });
 // Array of iframe IDs
-const iframeIds = ['bear', 'nerfgun', 'scissors','sunglasses','redbox','ledlight','stapler','wirecutters','usbplug'];
-const videoIds = ['bear_video', 'nerfgun_video', 'redbox_video', 'scissors_video', 'sunglasses_video', 'ledlight_video', 'stapler_video', 'wirecutters_video', 'usbplug_video'];
+const iframeIds = ['toy', 'barb', 'scissors','carrot_knife','redbox','drawer','stapler','jumping_lamp','lamp' ,'switch', 'vacuum'];
+const videoIds = ['toy_video', 'barb_video', 'scissors_video', 'carrot_knife_video', 'redbox_video', 'drawer_video', 'stapler_video', 'jumping_lamp_video', 'lamp_video' , 'switch_video', 'vacuum_video'];
 
 // Function to show the selected iframe and hide others
 function showIframe(iframeId) {
