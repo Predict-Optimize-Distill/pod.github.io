@@ -100,10 +100,7 @@
                         <a href="https://github.com/brentyi" target="_blank" class="author-text">
                             Brent Yi
                         </a>
-                        <div style="width: 1.25em; display: inline-block"></div>
-                        <a href="https://goldberg.berkeley.edu/" target="_blank" class="author-text">
-                            Ken Goldberg
-                        </a>
+
                         <div style="width: 1.25em; display: inline-block"></div>
                         <a href="https://people.eecs.berkeley.edu/~kanazawa/" target="_blank" class="author-text">
                             Angjoo Kanazawa
@@ -162,7 +159,7 @@
         <div class="section base-row add-top-padding">
             <h1 class="tldr">
                 <b>TL;DR</b>:
-                POD learns to predict 3D part configurations over time from a single video through a self-improving cycle of prediction and optimization.
+                POD gets better at 4D reconstruction by watching long videos in a self-improving cycle.
             </h1>
             <video id="main-video" autobuffer muted autoplay loop controls playsinline>
                 <source id="mp4" src="data/teaser_video.mp4" type="video/mp4">
@@ -176,7 +173,7 @@
                 Humans can quickly recognize how familiar objects move just by looking. For unfamiliar objects, we improve our intuition by watching them in action—turning them around, observing how they move, and gradually getting better at predicting how their parts are configured.
             </p>
             <p class="paragraph">
-                POD (Predict-Optimize-Distill) follows a similar principle. Given a scan of a novel object and a long video of it being manipulated, POD learns an object-specific model that predicts 3D part configurations from individual images. It starts by training a pose predictor on single video frames, refines the predictions through optimization, and then distills the improved results into synthetic training data. Repeating this cycle improves the model’s accuracy and robustness—especially on longer videos or under heavy occlusion.
+                <b>POD (Predict-Optimize-Distill)</b> follows a similar principle. Given a scan of a novel object and a long video of it being manipulated, POD learns an object-specific model that predicts 3D part configurations from individual images. It starts by training a pose <em>predictor</em> on single video frames, refines the predictions through <em>optimization</em>, and then <em>distills</em> the improved results into synthetic training data. Repeating this cycle improves the model’s accuracy and robustness—especially on longer videos or under heavy occlusion.
             </p>
 
             <img src="data/splash_n.png" style="max-width: 100%" />
@@ -186,14 +183,16 @@
 
         <div class="section base-row add-top-padding">
             
-            <h1>4D Object Part Understanding</h1>
+            <h1>4D Reconstruction Results</h1>
             <p class="paragraph">
                 POD takes as input a multi-view scan of an object along with casually captured, long-form human interaction videos, and estimates 3D part poses over time. Unlike previous optimization-only methods such as <a href="https://robot-see-robot-do.github.io/" class="author-text"target="_blank">RSRD</a>, which can struggle with ambiguous viewpoints, POD integrates a self-improving learning cycle into the optimization framework, enabling more consistent and robust 4D part recovery.
             </p>
             
 
             <div id="main-results">
-                <h1 class="tldr"><b> 4D Reconstruction Resultss</b></h1>
+                <!-- <h1 class="tldr"><b> 4D Reconstruction Results</b></h1> -->
+
+
             <div class="video-carousel-wrapper">
                 <div class="carousel-container" id="videoCarousel">
                     <!-- Add your video elements here -->
