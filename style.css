@@ -43,7 +43,7 @@ body {
 
 .carousel-container {
     width: 100%;
-    max-width: 940px;
+    max-width: 1040px;
     margin: 0 auto;
     overflow-x: auto;
     white-space: nowrap;
@@ -55,8 +55,10 @@ body {
 } */
 
 .carousel-container .carousel-item video {
-    width: 640px;
-    height: 360px;
+    /* width: 640px;
+    height: 360px; */
+    width: 900px;
+    height: 420px;
     object-fit: cover;
 }
 

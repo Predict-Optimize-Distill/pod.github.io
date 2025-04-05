@@ -170,9 +170,15 @@
         </div>
 
         <div class="section base-row add-top-padding">
-            <h1 class="tldr">
-                For novel objects, humans can resort to long-form inspection to build intuition of how object moves in 3D space. The more we observe the object, the better we get at predicting its 3D state immediately. Similarly, POD  achieves better 4D object understanding with increasing observation time.
-            </h1>
+            <h1>Understanding Objects Through Long-Form Observation</h1>
+
+            <p class="paragraph">
+                Humans can quickly recognize how familiar objects move just by looking. For unfamiliar objects, we improve our intuition by watching them in action—turning them around, observing how they move, and gradually getting better at predicting how their parts are configured.
+            </p>
+            <p class="paragraph">
+                POD (Predict-Optimize-Distill) follows a similar principle. Given a scan of a novel object and a long video of it being manipulated, POD learns an object-specific model that predicts 3D part configurations from individual images. It starts by training a pose predictor on single video frames, refines the predictions through optimization, and then distills the improved results into synthetic training data. Repeating this cycle improves the model’s accuracy and robustness—especially on longer videos or under heavy occlusion.
+            </p>
+
             <img src="data/splash_n.png" style="max-width: 100%" />
         </div>
 
@@ -187,7 +193,7 @@
             
 
             <div id="main-results">
-                <h1 class="tldr"><b>Object Tracking Results</b></h1>
+                <h1 class="tldr"><b> 4D Reconstruction Resultss</b></h1>
             <div class="video-carousel-wrapper">
                 <div class="carousel-container" id="videoCarousel">
                     <!-- Add your video elements here -->
