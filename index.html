@@ -285,16 +285,31 @@
                     <div data-img-src="data/thumbnails/stapler.png" data-id="stapler-thumb" data-label="Stapler"></div>
                     <div data-img-src="data/thumbnails/switch.png" data-id="switch-thumb" data-label="Nintendo Switch"></div>
                     <div data-img-src="data/thumbnails/vacuum.png" data-id="vacuum" data-label="Vacuum"></div>
+                    <div data-img-src="data/thumbnails/jumping_lamp.png" data-id="jumping_lamp" data-label="Jumping Lamp"></div>
+                    <div data-img-src="data/thumbnails/lamp.png" data-id="lamp" data-label="Folded Lamp"></div>
                 </div>
                 <button class="results-slide-arrow" id="results-slide-arrow-next" onclick="results_slide_right()">
                     &#8250;
                 </button>
             </div>
 
-                
-            </div> 
-        
-        </div>
+            <div class="section base-row add-top-padding">
+                <h1>Interactive Results</h1>
+                <p class="tldr">These 4D reconstructions are rendered in-browser! If you think that's cool, check out <a href="https://viser.studio/latest/" class="author-text" target="_blank">Viser</a>!</p>
+            <div id="iframe-container" class="iframe-container">
+                <div class="click-and-move-overlay">
+                    <h1 class="tldr">
+                        <b>
+                            <img src="data/drag_icon.png" alt="" class="inline-image">
+                            Click and move me!
+                            <img src="data/drag_icon.png" alt="" class="inline-image">
+                        </b>
+                    </h1>
+                </div>
+                <iframe class="iframe show"
+                    src="https://predict-optimize-distill.github.io/pod.github.io/website/viser-client/?playbackPath=https://predict-optimize-distill.github.io/pod.github.io/website/recordings/recording.viser&initialCameraPosition=0.412,-0.650,0.111&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
+                ></iframe>
+            </div>
 
 
         <div class="section base-row add-top-padding">
