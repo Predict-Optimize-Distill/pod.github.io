@@ -63,7 +63,7 @@
                 <span style="text-wrap: nowrap">Predict-Optimize-Distill</span>
             </h1>
 
-            <h1 class="subheader">4D Object Understanding from Monocular Video</h1>
+            <h1 class="subheader">Self-Improving Cycle for 4D Object Understanding</h1>
             <!-- Author list -->
             <div class="base-row">
                 <!-- Refer to how author wrapping is performed in https://brentyi.github.io/tilted/ -->
@@ -162,7 +162,7 @@
         <div class="section base-row add-top-padding">
             <h1 class="tldr">
                 <b>TL;DR</b>:
-                POD uses a self-improving cycle for 4D object understanding from an object scan and single monocular video.
+                POD learns to predict 3D part configurations over time from a single video through a self-improving cycle of prediction and optimization.
             </h1>
             <video id="main-video" autobuffer muted autoplay loop controls playsinline>
                 <source id="mp4" src="data/teaser_video.mp4" type="video/mp4">
@@ -173,7 +173,7 @@
             <h1 class="tldr">
                 For novel objects, humans can resort to long-form inspection to build intuition of how object moves in 3D space. The more we observe the object, the better we get at predicting its 3D state immediately. Similarly, POD  achieves better 4D object understanding with increasing observation time.
             </h1>
-            <img src="data/splash.jpg" style="max-width: 100%" />
+            <img src="data/splash_n.png" style="max-width: 100%" />
         </div>
 
 
@@ -182,9 +182,7 @@
             
             <h1>4D Object Part Understanding</h1>
             <p class="paragraph">
-                POD takes in <b>1) </b>a multi-view object scan and <b>2)</b> a monocular demonstration video.
-                By creating part-aware 3D representations using <a href="https://www.garfield.studio/" class="author-text" target="_blank">GARField</a> (parts, toggle for clusters) and 
-                <a href="https://github.com/facebookresearch/dinov2" class="author-text"target="_blank">DINOv2</a> (tracking SE3 pose), POD achieves 4D object part tracking. We compare POD with an optimization only method <a href="https://robot-see-robot-do.github.io/" class="author-text"target="_blank">RSRD</a>.
+                POD takes as input a multi-view scan of an object along with casually captured, long-form human interaction videos, and estimates 3D part poses over time. Unlike previous optimization-only methods such as <a href="https://robot-see-robot-do.github.io/" class="author-text"target="_blank">RSRD</a>, which can struggle with ambiguous viewpoints, POD integrates a self-improving learning cycle into the optimization framework, enabling more consistent and robust 4D part recovery.
             </p>
             
 
