@@ -458,9 +458,9 @@ display: none;
 
 
 .thumbnails {
-    width: auto;  /* Keeps the natural width */
+    /* width: auto;  Keeps the natural width */
     height: 100px; /* Maintains aspect ratio */
-    max-width: 100%; /* Ensures responsiveness */
+    /*max-width: 100%;  Ensures responsiveness */
     object-fit: contain; /* Prevents cropping/distortion */
     overflow: hidden;
     margin-top: 0px;
