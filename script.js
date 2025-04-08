@@ -1,44 +1,59 @@
 $(() => {
-  $(".results-slide-row").each((switcher_index, switcher) => {
+  $(".results-slide-row").each((index, switcher) => {
     const $switcher = $(switcher);
 
-    $switcher.children().each((switcher_child_index, child) => {
+    // ✅ Store and remove original placeholder <div>s
+    const children = $switcher.children().toArray();
+    $switcher.empty();
+
+    // ✅ Create buttons dynamically from placeholder data
+    children.forEach((child) => {
       const $child = $(child);
+      const type = $child.data("type"); // 'iframe' or 'video'
+      const id = $child.data("id");
+
       const $input = $("<button>", {
-        class: "thumbnail-btn",
-        id: $child.data("id"),
+        class: `thumbnail-btn ${type}-thumb`,
+        id: id,
+        "data-type": type,
       });
+
       const $img = $("<img>", {
         class: "thumbnails",
         alt: "paper",
         src: $child.data("img-src"),
         style: {
-          maxWidth: "100%",  // Ensures image does not exceed container width
-          height: "auto",    // Maintains aspect ratio
-          objectFit: "contain" // Prevents distortion while fitting within its container
+          maxWidth: "100%",
+          height: "auto",
+          objectFit: "contain",
         },
       });
-      $input.append($img);
+
       const $label = $("<label>", {
         text: $child.data("label"),
         class: "thumbnail_label",
       });
-      $input.append($label);
+
+      $input.append($img).append($label);
       $switcher.append($input);
     });
   });
-});
-// Array of iframe IDs
-const iframeIds = ['toy', 'barb', 'scissors','carrot_knife','redbox','drawer','stapler','jumping_lamp','lamp' ,'switch', 'vacuum'];
-const videoIds = ['toy_video', 'barb_video', 'scissors_video', 'carrot_knife_video', 'redbox_video', 'drawer_video', 'stapler_video', 'jumping_lamp_video', 'lamp_video' , 'switch_video', 'vacuum_video'];
 
-// Function to show the selected iframe and hide others
-function showIframe(iframeId) {
+  // ✅ Call only once outside the loop
+  initializeIframeFlow();
+  initializeVideoFlow();
+});
+
+// ----------------------------- IFRAME LOGIC -----------------------------
+const iframeIds = ['spot', 'jumping_lamp', 'wood_puppet', 'turtle', 'motor'];
+let iframeThumbnailIndex = 0;
+let iframeThumbs = [];
+
+function showIframe(idToShow) {
   iframeIds.forEach(id => {
     const iframe = document.getElementById(id);
-    // console.log(iframe);
     if (iframe) {
-      if (id === iframeId) {
+      if (id === idToShow) {
         iframe.classList.add('show');
         iframe.src = $(iframe).data('src');
       } else {
@@ -48,85 +63,89 @@ function showIframe(iframeId) {
     }
   });
 }
-// Function to show the selected video and hide others
-function showVideo(videoId) {
+
+function initializeIframeFlow() {
+  iframeThumbs = $(".thumbnail-btn.iframe-thumb").toArray();
+
+  iframeThumbs.forEach((btn, index) => {
+    $(btn).on("click", function () {
+      iframeThumbnailIndex = index;
+      $(".thumbnail-btn.iframe-thumb").css('opacity', '');
+      $(btn).css('opacity', '1.0');
+
+      const iframeId = $(btn).attr('id').replace('-thumb', '');
+      showIframe(iframeId);
+
+      const slider = document.getElementById('results-objs-scroll');
+      if (slider) {
+        slider.scrollLeft = btn.offsetLeft - slider.offsetWidth / 2;
+      }
+    });
+  });
+
+  if (iframeThumbs[0]) $(iframeThumbs[0]).click();
+}
+
+function results_slide_left_iframe() {
+  let newIndex = (iframeThumbnailIndex - 1 + iframeThumbs.length) % iframeThumbs.length;
+  $(iframeThumbs[newIndex]).click();
+}
+
+function results_slide_right_iframe() {
+  let newIndex = (iframeThumbnailIndex + 1) % iframeThumbs.length;
+  $(iframeThumbs[newIndex]).click();
+}
+
+// ----------------------------- VIDEO LOGIC -----------------------------
+const videoIds = ['toy_video', 'barb_video', 'scissors_video', 'carrot_knife_video', 'redbox_video', 'drawer_video', 'stapler_video', 'lamp_video', 'switch_video', 'vacuum_video'];
+let videoThumbnailIndex = 0;
+let videoThumbs = [];
+
+function showVideo(idToShow) {
   videoIds.forEach(id => {
-    const video = document.getElementById(id);
-    if (video) {
-      if (id === videoId) {
-        video.classList.add('show');
-        video.querySelector('video').play(); // Play the selected video
+    const container = document.getElementById(id);
+    if (container) {
+      const vid = container.querySelector('video');
+      if (id === idToShow) {
+        container.classList.add('show');
+        vid.play();
       } else {
-        video.classList.remove('show');
-        video.querySelector('video').pause(); // Pause other videos
-        video.querySelector('video').currentTime = 0; //Also restart all others
+        container.classList.remove('show');
+        vid.pause();
+        vid.currentTime = 0;
       }
     }
   });
 }
 
-let currentThumbnail = 0;
-let thumbnailFromIndex = {}
-let thumbnailCount = 0;
+function initializeVideoFlow() {
+  videoThumbs = $(".thumbnail-btn.video-thumb").toArray();
 
-// Function to set up thumbnail click events
-function setupThumbnailClickEvents() {
-  $('.thumbnail-btn').each((index, thumbnail) => {
-    thumbnailCount += 1;
-    thumbnailFromIndex[index] = thumbnail;
-    $(thumbnail).click(function() {
-      const buttonId = $(thumbnail).attr('id');
-      if (buttonId === undefined) return;
-      const iframeId = buttonId.replace('-thumb', '');
+  videoThumbs.forEach((btn, index) => {
+    $(btn).on("click", function () {
+      videoThumbnailIndex = index;
+      $(".thumbnail-btn.video-thumb").css('opacity', '');
+      $(btn).css('opacity', '1.0');
 
-      currentThumbnail = index;
-      $('.thumbnail-btn').css('opacity', '');
-      $(thumbnail).css('opacity', '1.0');
-      showIframe(iframeId);
-      showVideo(iframeId + '_video');
+      const videoId = $(btn).attr('id').replace('-thumb', '') + '_video';
+      showVideo(videoId);
 
-      // Make sure the new thumbnail is visible.
-      const slider_window = document.getElementById('results-objs-scroll');
-      slider_window.scrollLeft = thumbnail.offsetLeft - slider_window.offsetWidth / 2;
+      const slider = document.getElementById('results-objs-scroll');
+      if (slider) {
+        slider.scrollLeft = btn.offsetLeft - slider.offsetWidth / 2;
+      }
     });
   });
 
-  $(thumbnailFromIndex[0]).click();
+  if (videoThumbs[0]) $(videoThumbs[0]).click();
 }
 
-// For main results object carousel -- left/right arrow clicks to navigate
-function results_slide_left() {
-  const newIndex = ((currentThumbnail - 1 + thumbnailCount) % thumbnailCount);
-  const newThumbnail = thumbnailFromIndex[newIndex];
-  $(newThumbnail).click();
-}
-function results_slide_right() {
-  const newIndex = (currentThumbnail + 1) % thumbnailCount;
-  const newThumbnail = thumbnailFromIndex[newIndex];
-  $(newThumbnail).click();
+function results_slide_left_video() {
+  let newIndex = (videoThumbnailIndex - 1 + videoThumbs.length) % videoThumbs.length;
+  $(videoThumbs[newIndex]).click();
 }
 
-
-
-// Initialize the page
-function initializePage() {
-  setupThumbnailClickEvents();
-
-  // Show the first iframe by default
-  if (iframeIds.length > 0) {
-    showIframe(iframeIds[0]);
-  }
-  if (videoIds.length > 0) {
-    showVideo(videoIds[0]);
-  }
+function results_slide_right_video() {
+  let newIndex = (videoThumbnailIndex + 1) % videoThumbs.length;
+  $(videoThumbs[newIndex]).click();
 }
-// Run initialization when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initializePage);
-
-// // Get event listener for when window resized
-// window.addEventListener('resize', () => {
-//   // Resize the video arrows to be in the right place.
-//   const prev_arr = document.getElementById('vid-slide-arrow-prev');
-//   const next_arr = document.getElementById('vid-slide-arrow-next');
-//   console.log("foo", prev_arr.style);
-// });

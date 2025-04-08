@@ -190,9 +190,6 @@
             
 
             <div id="main-results">
-                <!-- <h1 class="tldr"><b> 4D Reconstruction Results</b></h1> -->
-
-
             <div class="video-carousel-wrapper">
                 <div class="carousel-container" id="videoCarousel">
                     <!-- Add your video elements here -->
@@ -220,11 +217,6 @@
                         </video>
                     </div>
 
-                    <div class="carousel-item" id="jumping_lamp_video">
-                        <video autoplay muted loop playsinline height="800px">
-                            <source src="data/demo_vids/jumping_lamp.mp4" type="video/mp4">
-                        </video>
-                    </div>
 
                     <div class="carousel-item" id="knife_video">
                         <video autoplay muted loop playsinline height="800px">
@@ -272,31 +264,34 @@
             </div>
 
             <div style="position: relative; display: flex;">
-                <button class="results-slide-arrow" id="results-slide-arrow-prev" onclick="results_slide_left()">
+                <button class="results-slide-arrow" id="results-slide-arrow-prev" onclick="results_slide_left_video()">
                     &#8249;
                 </button>
                 <div class="results-slide-row" id="results-objs-scroll">
-                    <div data-img-src="data/thumbnails/toy.png" data-id="toy-thumb" data-label="Tractor"></div>
-                    <div data-img-src="data/thumbnails/barb.png" data-id="barb-thumb" data-label="Barbarian"></div>
-                    <div data-img-src="data/thumbnails/redbox.png" data-id="redbox-thumb" data-label="Box"></div>
-                    <div data-img-src="data/thumbnails/scissors.png" data-id="scissors-thumb" data-label="Scissors"></div>
-                    <div data-img-src="data/thumbnails/carrot_knife.png" data-id="carrot_knife-thumb" data-label="Carrot Knife"></div>
-                    <div data-img-src="data/thumbnails/drawer.png" data-id="drawer-thumb" data-label="Drawer"></div>
-                    <div data-img-src="data/thumbnails/stapler.png" data-id="stapler-thumb" data-label="Stapler"></div>
-                    <div data-img-src="data/thumbnails/switch.png" data-id="switch-thumb" data-label="Nintendo Switch"></div>
-                    <div data-img-src="data/thumbnails/vacuum.png" data-id="vacuum" data-label="Vacuum"></div>
-                    <div data-img-src="data/thumbnails/jumping_lamp.png" data-id="jumping_lamp" data-label="Jumping Lamp"></div>
-                    <div data-img-src="data/thumbnails/lamp.png" data-id="lamp" data-label="Folded Lamp"></div>
+                    <div data-img-src="data/thumbnails/toy.png" data-id="toy-thumb" data-label="Tractor" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/barb.png" data-id="barb-thumb" data-label="Barbarian" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/redbox.png" data-id="redbox-thumb" data-label="Box" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/scissors.png" data-id="scissors-thumb" data-label="Scissors" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/carrot_knife.png" data-id="carrot_knife-thumb" data-label="Carrot Knife" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/drawer.png" data-id="drawer-thumb" data-label="Drawer" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/stapler.png" data-id="stapler-thumb" data-label="Stapler" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/switch.png" data-id="switch-thumb" data-label="Nintendo Switch" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/vacuum.png" data-id="vacuum" data-label="Vacuum" data-type="video"></div>
+                    <div data-img-src="data/thumbnails/lamp.png" data-id="lamp" data-label="Folded Lamp" data-type="video"></div>
                 </div>
-                <button class="results-slide-arrow" id="results-slide-arrow-next" onclick="results_slide_right()">
+                <button class="results-slide-arrow" id="results-slide-arrow-next" onclick="results_slide_right_video()">
                     &#8250;
                 </button>
             </div>
+             </div>
+        </div>  
 
-            <div class="section base-row add-top-padding">
-                <h1>Interactive Results</h1>
-                <p class="tldr">These 4D reconstructions are rendered in-browser! If you think that's cool, check out <a href="https://viser.studio/latest/" class="author-text" target="_blank">Viser</a>!</p>
+        <div class="section base-row add-top-padding">
+            <h1>Interactive Results</h1>
+            <!-- <p class="tldr">These 4D reconstructions are rendered in-browser! If you think that's cool, check out <a href="https://viser.studio/latest/" class="author-text" target="_blank">Viser</a>!</p> -->
+        
             <div id="iframe-container" class="iframe-container">
+               
                 <div class="click-and-move-overlay">
                     <h1 class="tldr">
                         <b>
@@ -306,11 +301,51 @@
                         </b>
                     </h1>
                 </div>
-                <iframe class="iframe show"
-                    src="https://predict-optimize-distill.github.io/pod.github.io/website/viser-client/?playbackPath=https://predict-optimize-distill.github.io/pod.github.io/website/recordings/recording.viser&initialCameraPosition=0.412,-0.650,0.111&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
-                ></iframe>
-            </div>
 
+            <iframe
+                id="spot" 
+                class="iframe"
+                data-src = "http://localhost:8000/pod.github.io/website/viser-client/?playbackPath=http://localhost:8000/pod.github.io/website/recordings/spot.viser&initialCameraPosition=0.412,-0.650,0.111&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
+            ></iframe>
+            <iframe  
+                id="jumping_lamp" 
+                class="iframe"
+                data-src = "http://localhost:8000/pod.github.io/website/viser-client/?playbackPath=http://localhost:8000/pod.github.io/website/recordings/jumping_lamp.viser&&initialCameraPosition=0.097,-0.558,0.016&initialCameraLookAt=0.049,0.000,-0.001&initialCameraUp=0.000,0.000,1.000"
+            ></iframe>
+            <iframe  
+                id="wood_puppet" 
+                class="iframe"
+                data-src = "http://localhost:8000/pod.github.io/website/viser-client/?playbackPath=http://localhost:8000/pod.github.io/website/recordings/wood_puppet.viser&initialCameraPosition=0.517,-0.416,0.078&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
+            ></iframe>
+            <iframe 
+                id="turtle" 
+                class="iframe"
+                data-src ="http://localhost:8000/pod.github.io/website/viser-client/?playbackPath=http://localhost:8000/pod.github.io/website/recordings/turtle.viser&initialCameraPosition=0.152,0.711,0.315&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
+            ></iframe>
+            <iframe 
+                id="motor" 
+                class="iframe"
+                data-src ="http://localhost:8000/pod.github.io/website/viser-client/?playbackPath=http://localhost:8000/pod.github.io/website/recordings/motor.viser&initialCameraPosition=0.348,-0.343,0.210&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
+            ></iframe>
+            </div>
+            <div style="position: relative; display: flex;">
+                <button 
+                    class="results-slide-arrow" id="results-slide-arrow-prev-interactive" onclick="results_slide_left_iframe()">
+                    &#8249;
+                </button>
+                <div class="results-slide-row" id="results-objs-scroll">
+                    <div data-img-src="data/synthetic_data/spot.jpg" data-id="spot-thumb" data-label="Spot" data-type="iframe"></div>
+                    <div data-img-src="data/synthetic_data/jumping_lamp.jpg" data-id="jumping_lamp-thumb" data-label="Jumping_Lamp" data-type="iframe"></div>
+                    <div data-img-src="data/synthetic_data/wood_puppet.jpg" data-id="wood_puppet-thumb" data-label="Wood_Puppet" data-type="iframe"></div>
+                    <div data-img-src="data/synthetic_data/turtle.jpg" data-id="turtle-thumb" data-label="Turtle" data-type="iframe"></div>
+                    <div data-img-src="data/synthetic_data/motor.jpg" data-id="motor-thumb" data-label="Motor" data-type="iframe"></div>
+                </div>
+                <button class="results-slide-arrow" id="results-slide-arrow-next" onclick="results_slide_right_iframe()">
+                    &#8250;
+                </button>
+            </div>
+            <p class="tldr">These 4D reconstructions are rendered in-browser! If you think that's cool, check out <a href="https://viser.studio/latest/" class="author-text" target="_blank">Viser</a>!</p>    
+        </div>
 
         <div class="section base-row add-top-padding">
             <h1>How it works</h1>
@@ -324,7 +359,7 @@
             <p class="paragraph">
                 POD builds a 3D object model from a multi-view scan of the object using <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" class="author-text" target="_blank">3D Gaussian Splatting</a> and <a href="https://www.garfield.studio/" class="author-text" target="_blank">GARField</a>. In the <b>prediction</b> stage, POD estimates the object's part poses from a monocular video with a feed-forward model conditioned on RGB images. Using these predictions it <b>optimizes</b> poses against the monocular video observations, utilizing quasi-multiview supervision by finding matching frames with similar predicted poses and jointly optimizing them. POD then <b>distills</b> the optimized poses back into the predictive model by generating synthetic data from novel views by applying part poses to the object 3D model and rendering RGB observations from different camera poses. 
             </p>
-            <img src="data/publication_pcp_metrics (1).jpg" style="max-width: 90%" />
+            <img src="data/publication_pcp_metrics (1).jpg" style="max-width: 70%" />
             <p class="paragraph">
                 POD's performance increases with the frame number and the loop number.
             </p>
