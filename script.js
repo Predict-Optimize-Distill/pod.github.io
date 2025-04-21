@@ -45,7 +45,7 @@ $(() => {
 });
 
 // ----------------------------- IFRAME LOGIC -----------------------------
-const iframeIds = ['spot', 'jumping_lamp', 'wood_puppet', 'turtle', 'motor'];
+const iframeIds = ['barb','folded_lamp','tractor','carrot_knife','spot', 'jumping_lamp', 'wood_puppet', 'turtle', 'motor'];
 let iframeThumbnailIndex = 0;
 let iframeThumbs = [];
 
